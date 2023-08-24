@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        body{
+            background-color: rgba(100, 225, 237, 0.308);
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        #addButton{
+            height: 50vh;
+            background-color:cadetblue;
+            color: aliceblue;
+            font-weight: bolder;
+            border: none;
+            font-family: cursive;
+        }
+        .floatingButton{
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            border-radius: 1rem;
+            border: none;
+            color:white ;
+            padding: 1rem;
+            z-index: 1;
+            background-color:cadetblue;
+           transition-delay: 2s;
+           transition-timing-function: ease-in-out;
+        }
+       @media screen and (max-width : 480px) {
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #addButton{
+           height: 2rem;
+           width:40vw ;
+        }
+       }
+    </style>
+</head>
+<body>
+    <div>
+        
+        <button class="addButton" id="addButton" onclick="add()">ADD</button> 
+    </div>
+    <div>
+        <a href="#addButton">
+            <button class="floatingButton"><span style='font-size:25px;'>&#8613;</span></button>
+        </a>
+    </div>
+   
+    <script>
+        function add(){
+            const container = document.createElement("div");
+            const addButton = document.getElementsByClassName("addButton")
+            
+            
+            // bg image urls
+            const backgroundImageUrl = ["url('https://i.pinimg.com/236x/20/da/e7/20dae7c6c0b73f22450b8d12d985603e.jpg')",
+                                        "url('https://i.pinimg.com/564x/3c/f7/de/3cf7de0ebf56db6eaee7e97a3a5a965f.jpg')",
+                                        "url('https://i.pinimg.com/564x/5d/73/64/5d736425d1b1047842a10ae43f30db2e.jpg')",
+                                        "url('https://i.pinimg.com/564x/a4/43/b5/a443b5eeac5b08859baecbe906021505.jpg')",
+                                        "url('https://i.pinimg.com/564x/7c/6c/a3/7c6ca365c15b3a609b92d6f98026e50d.jpg')",
+                                        "url('https://i.pinimg.com/564x/ea/9d/b3/ea9db39191efa17612bb47b3840f2eb0.jpg')" ];
+            const colors = ["#a18dce","#392d69","#c53a94","#87a3a3","#ac8d9a","#08203e","#5e435d","#894b77"]
+
+            const delButton = document.createElement("button");
+            delButton.innerHTML = "Delete"
+            const textArea = document.createElement("textarea")
+            textArea.style.backgroundImage=backgroundImageUrl[Math.floor(Math.random()*backgroundImageUrl.length+0)];
+            textArea.cols = "40";
+            textArea.rows = "20";
+            container.style.zIndex = "0"
+            textArea.style.backgroundRepeat= "no-repeat";
+            textArea.setAttribute("placeholder","text...")
+            textArea.style.backgroundSize= "cover"
+            textArea.style.color=colors[Math.floor(Math.random()*colors.length+0)];
+            // heading textarea
+            const headingInput = document.createElement("input")
+            headingInput.setAttribute("type","Text");
+            headingInput.style.textAlign="center"
+            headingInput.style.borderRadius = "2rem 2rem 0 0 "
+            headingInput.style.color = "white"
+            headingInput.style.height = "2rem"
+            headingInput.style.fontFamily = "cursive"
+            headingInput.style.fontSize = "large"
+            headingInput.style.border ="none"
+            headingInput.style.textTransform = "uppercase"
+            headingInput.setAttribute("placeholder","Heading...")
+            headingInput.style.backgroundColor = colors[Math.floor(Math.random()*colors.length) +0]
+            // container, text area and delete button styling
+            container.style.display="flex";
+            container.style.flexDirection = "column"
+            delButton.style.backgroundColor = colors[Math.floor(Math.random()*colors.length+0)]
+            delButton.style.color = "white";
+            delButton.style.fontFamily = "cursive "
+            textArea.style.fontWeight ="bold"
+            textArea.style.border = "none"
+            delButton.style.border = "none"
+            delButton.style.height= "2rem"
+            // append child
+            container.appendChild(headingInput);
+            document.body.appendChild(container);
+            container.appendChild(textArea);
+            container.appendChild(delButton);
+            // delete function
+            delButton.addEventListener("click", ()=>{
+                container.remove(); 
+            });
+        }
+        </script>
+</body>
+</html>
